@@ -4,9 +4,10 @@
   разделенными запятыми.
 */
 export function arraySorting(data) {
+    if (!data) return '';
     return data
         .split(',')
-        .map(Number)
+        .map((num) => Number(num.trim()))
         .sort((a, b) => a - b)
         .join(',');
 }
@@ -17,7 +18,12 @@ export function arraySorting(data) {
   были бы удалены из массива, и верните его в качестве результата функции.
 */
 export function arrayFiltering(data) {
-    return data.filter((num) => num <= 100);
+    for (let i = data.length - 1; i >= 0; i--) {
+        if (data[i] > 100) {
+            data.splice(i, 1);
+        }
+    }
+    return data;
 }
 
 /*
@@ -27,7 +33,9 @@ export function arrayFiltering(data) {
 */
 export function arrayPushing(array1, array2) {
     const result = [];
-    for (let i = 0; i < 5; i++) {
+    const length = array1.length;
+
+    for (let i = 0; i < length; i++) {
         result.push(array1[i]);
         result.push(array2[i]);
     }
